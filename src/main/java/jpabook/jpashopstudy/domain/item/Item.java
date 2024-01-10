@@ -12,6 +12,7 @@ import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import jpabook.jpashopstudy.domain.CategoryItem;
+import jpabook.jpashopstudy.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,4 +36,17 @@ public abstract class Item {
     private int price;
 
     private int stockQuantity;
+
+    //==비즈니스 로직==//
+    public void addStock(int quantity) {
+        this.stockQuantity += quantity;
+    }
+
+    public void removeStock(int qunatity) {
+        int restStock = this.stockQuantity - qunatity;
+        if (restStock < 0) {
+            throw new NotEnoughStockException("need more stock");
+        }
+        this.stockQuantity = restStock;
+    }
 }
