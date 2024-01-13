@@ -1,5 +1,6 @@
 package jpabook.jpashopstudy.controller;
 
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
